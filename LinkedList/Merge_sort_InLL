@@ -1,0 +1,59 @@
+public class LinkedList {
+
+public static Node findMid(Node head){
+        Node slow=head;
+        Node fast=head.next;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+
+    public Node merge(Node leftHead,Node righthead ){
+        Node mergedLL= new Node(-1);
+        Node temp=mergedLL;
+        while(leftHead!=null && righthead!=null){
+            if(leftHead.data<=righthead.data){
+                temp.next=leftHead;
+                leftHead=leftHead.next;
+                temp=temp.next;
+            }
+            else{
+                temp.next=righthead;
+                righthead=righthead.next;
+                temp=temp.next;
+            }
+        }
+        while(leftHead!=null){
+            temp.next=leftHead;
+                leftHead=leftHead.next;
+                temp=temp.next;
+        }
+        while(righthead!=null){
+            temp.next=righthead;
+                righthead=righthead.next;
+                temp=temp.next;
+        }
+        return mergedLL.next;
+    }
+
+    
+    public Node mergeSort(Node head){
+        if(head==null || head.next==null){
+            return head;
+        }
+        //find mid
+        Node mid=findMid(head);
+
+        //left and right ms
+        Node rightHead=mid.next;
+        mid.next=null;
+        Node leftHead=mergeSort(head);
+        Node righthead=mergeSort(rightHead);
+       
+        //mrege
+        return merge(leftHead,righthead);
+
+      }
+    }
