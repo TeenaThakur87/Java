@@ -10,7 +10,8 @@ public class Swap {
     }
     Node head;
     public void swapNodes(int x, int y){
-        if (x == y)return;
+        if (x == y)
+            return;
         Node prevX = null, currX = head;
         while (currX != null && currX.data != x) {
             prevX = currX;
@@ -20,12 +21,14 @@ public class Swap {
         while (currY != null && currY.data != y) {
             prevY = currY;currY = currY.next;
         }
-        if (currX == null || currY == null)return;
+        if (currX == null || currY == null)
+            return;
         if (prevX != null)prevX.next = currY;
         else head = currY;
         if (prevY != null)prevY.next = currX;
         else
-        head = currX;Node temp = currX.next;
+        head = currX;
+        Node temp = currX.next;
         currX.next = currY.next;
         currY.next = temp;
     }
